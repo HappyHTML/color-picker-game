@@ -24,6 +24,12 @@ class ColorPickerChallenge {
         }
         this.newGameButton.addEventListener('click', () => this.startNewGame());
         this.startNewGame();
+
+        this.resetButton = document.getElementById('reset-data');
+this.resetButton.addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
+});
     }
     generateRandomColor() {
         return {
