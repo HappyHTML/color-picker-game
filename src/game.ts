@@ -18,6 +18,7 @@ class ColorPickerChallenge {
     private levelsBeaten: number = 0;
     private levelTries: number = 0;
     private totalTries: number = 0;
+    private resetButton: HTMLElement;
 
     constructor() {
         this.targetColorElement = document.getElementById('target-color')!;
@@ -27,6 +28,7 @@ class ColorPickerChallenge {
         this.levelsBeatenElement = document.getElementById('levels-beaten')!;
         this.levelTriesElement = document.getElementById('level-tries')!;
         this.totalTriesElement = document.getElementById('total-tries')!;
+        this.resetButton = document.getElementById('reset-data')!;
 
         try {
             const savedLevelsBeaten = localStorage.getItem('levelsBeaten');
@@ -41,6 +43,11 @@ class ColorPickerChallenge {
 
         this.newGameButton.addEventListener('click', () => this.startNewGame());
         this.startNewGame();
+        
+        this.resetButton.addEventListener('click', function(this: void): void {
+            localStorage.clear();
+            location.reload();
+        });
     }
 
     private generateRandomColor(): Color {
