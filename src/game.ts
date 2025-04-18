@@ -44,7 +44,7 @@ class ColorPickerChallenge {
         this.newGameButton.addEventListener('click', () => this.startNewGame());
         this.startNewGame();
         
-        this.resetButton.addEventListener('click', function(this: void): void {
+        this.resetButton.addEventListener('click', () => {
             localStorage.clear();
             location.reload();
         });
