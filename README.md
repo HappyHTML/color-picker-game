@@ -28,6 +28,7 @@ Mainly me playing around.  Play the game at: color-picker-game.pages.dev
     - Total tries
 4. **Beat as many levels as you can!**
 5. **The link is in the sidebar**
+6. **To reset scoreboard data, clear the cookies.**
 
 
 ---
