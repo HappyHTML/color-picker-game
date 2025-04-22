@@ -19,30 +19,6 @@ class ColorPickerChallenge {
     private levelTries: number = 0;
     private totalTries: number = 0;
     private resetButton: HTMLElement;
-    private levelStartTime: number = 0;
-    private levelTimerInterval: number | null = null;
-    private levelTimerElement!: HTMLElement;
-    private startLevelTimer(): void {
-        if (this.levelTimerInterval !== null) {
-            clearInterval(this.levelTimerInterval);
-        }
-        this.levelTimerInterval = window.setInterval(() => {
-            this.updateLevelTimer();
-        }, 100); // update every 0.1s for smoothness
-    }
-    
-    private stopLevelTimer(): void {
-        if (this.levelTimerInterval !== null) {
-            clearInterval(this.levelTimerInterval);
-            this.levelTimerInterval = null;
-        }
-    }
-    
-    private updateLevelTimer(): void {
-        const elapsed = (performance.now() - this.levelStartTime) / 1000;
-        this.levelTimerElement.textContent = `Time this level: ${elapsed.toFixed(1)}s`;
-    }
-    
 
     constructor() {
         this.targetColorElement = document.getElementById('target-color')!;
@@ -53,8 +29,6 @@ class ColorPickerChallenge {
         this.levelTriesElement = document.getElementById('level-tries')!;
         this.totalTriesElement = document.getElementById('total-tries')!;
         this.resetButton = document.getElementById('reset-data')!;
-        this.levelTimerElement = document.getElementById('level-timer')!;
-
 
         try {
             const savedLevelsBeaten = localStorage.getItem('levelsBeaten');
@@ -112,11 +86,8 @@ class ColorPickerChallenge {
         this.targetColor = this.generateRandomColor();
         this.options = this.generateColorOptions(this.targetColor);
         this.levelTries = 0;
-        this.levelStartTime = performance.now();
-        this.startLevelTimer();
         this.renderGame();
         this.updateScoreboard();
-        this.updateLevelTimer();
     }
 
     private renderGame(): void {
@@ -139,7 +110,6 @@ class ColorPickerChallenge {
 
         const selectedColor = this.options[index];
         if (this.colorsAreEqual(selectedColor, this.targetColor)) {
-            this.stopLevelTimer();
             this.resultElement.textContent = 'Correct!';
             this.levelsBeaten++;
             localStorage.setItem('levelsBeaten', this.levelsBeaten.toString());
