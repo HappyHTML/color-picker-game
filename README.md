@@ -42,7 +42,7 @@ Please open an issue or submit a PR.
 
 ## License
 
-CCO 1.0 License
+CCO-1.0 License
 
 ---
 
